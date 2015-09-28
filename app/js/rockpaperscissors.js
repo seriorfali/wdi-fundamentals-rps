@@ -31,22 +31,71 @@ function getComputerMove(move) {
 
 function getWinner(playerMove,computerMove) {
     var winner;
-    if ((playerMove === 'rock' && computerMove === 'scissors') || (playerMove === 'scissors' && computerMove === 'paper') || (playerMove === 'paper' && computerMove === 'rock')) {
-        winner = 'player';
-    } else if ((computerMove === 'rock' && playerMove === 'scissors') || (computerMove === 'scissors' && playerMove === 'paper') || (computerMove === 'paper' && playerMove === 'rock')) {
-        winner = 'computer';
+    if ((playerMove === "rock" && computerMove === "scissors") || (playerMove === "scissors" && computerMove === "paper") || (playerMove === "paper" && computerMove === "rock")) {
+        winner = "player";
+    } else if ((computerMove === "rock" && playerMove === "scissors") || (computerMove === "scissors" && playerMove === "paper") || (computerMove === "paper" && playerMove === "rock")) {
+        winner = "computer";
     } else {
-        winner = 'tie';
+        winner = "tie";
     }
     return winner;
 }
 
 function playToFive() {
-    console.log("Let's play Rock, Paper, Scissors");
+    console.log("Let's play Rock, Paper, Scissors!");
     var playerWins = 0;
     var computerWins = 0;
-    // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
-    /* YOUR CODE HERE */
+    while (playerWins < 5 && computerWins < 5) {
+        var playerMove = getPlayerMove();
+        var computerMove = getComputerMove();
+        var winner = getWinner(playerMove, computerMove);
+        if (winner === "player") {
+            playerWins ++;
+            console.log("You win!");
+        } else if (winner === "computer") {
+            computerWins ++;
+            console.log("Computer wins.");
+        } else {
+            console.log("It's a tie!");
+        }
+        console.log("You chose " + playerMove + ", while Computer chose " + computerMove + ".");
+        console.log("The score is currently " + playerWins + " to " + computerWins + ".");
+    }
+    if (playerWins > computerWins) {
+        console.log("Bravo! You win the game! Please play again.")
+    } else {
+        console.log("Computer wins the game. Please try again.")
+    }
     return [playerWins, computerWins];
 }
 
+function playTo(x) {
+    console.log("Let's play Rock, Paper, Scissors!");
+    var playerWins = 0;
+    var computerWins = 0;
+    while (playerWins < x && computerWins < x) {
+        var playerMove = getPlayerMove();
+        var computerMove = getComputerMove();
+        var winner = getWinner(playerMove, computerMove);
+        if (winner === "player") {
+            playerWins ++;
+            console.log("You win!");
+        } else if (winner === "computer") {
+            computerWins ++;
+            console.log("Computer wins.");
+        } else {
+            console.log("It's a tie!");
+        }
+        console.log("You chose " + playerMove + ", while Computer chose " + computerMove + ".");
+        console.log("The score is currently " + playerWins + " to " + computerWins + ".");
+    }
+    if (playerWins > computerWins) {
+        console.log("Bravo! You win the game! Please play again.")
+    } else {
+        console.log("Computer wins the game. Please try again.")
+    }
+    return [playerWins, computerWins];
+}
+    
+
+playTo(7)
